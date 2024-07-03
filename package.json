@@ -12,6 +12,13 @@
     "dev": "nodemon api/crazy_prince.js"
 
   },
+
+    "engines": {
+    "node": "20.x"
+  },  
+  "devDependencies": {
+    "nodemon": "^2"
+  },
   "author": "Crazy_Prince",
   "license": "GPL-3.0 license",
   "dependencies": {
@@ -25,6 +32,9 @@
     "body-parser": "^1.20.1",
     "pastebin-js": "^1.0.6",
     "express": "^4.18.1",
+    "helmet": "^7.1.0",
+    "morgan": "^1.10.0",
     "path": "^0.12.7"
+      
    }
 }
