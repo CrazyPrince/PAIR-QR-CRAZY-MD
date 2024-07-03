@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const axios = require('axios'); // Assurez-vous d'importer Axios si ce n'est pas déjà fait
 
 const app = express();
 const port = process.env.PORT || 10000;
@@ -385,8 +386,14 @@ text-align: center;
 });
 
 // Route pour servir pair.html lorsque la route /pair est accédée
-app.get('/pair', (req, res) => {
-  const htmlContent = `
+app.get('/pair', async (req, res) => {
+  try {
+    const { Wasi_Tech } = req.query;
+    const response = await axios.get(`/code?number=${Wasi_Tech}`);
+    const data = response.data; // Récupération des données de la réponse Axios
+    
+    // Génération du contenu HTML à envoyer
+    const htmlContent = `
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -617,8 +624,12 @@ app.get('/pair', (req, res) => {
   </script>
 </body>
 </html>
-  `;
-  res.send(htmlContent);
+    `;
+    res.send(htmlContent);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    res.status(500).send('Error fetching data');
+  }
 });
 
 // Route pour servir helps.html lorsque la route /helps est accédée
