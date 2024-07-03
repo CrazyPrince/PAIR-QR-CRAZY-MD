@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRAZY-MD</title>
+  <meta name="theme-color" content="#f0a500">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Poppins:wght@400;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Aladin&family=Grenze+Gotisch:wght@900&family=Jolly+Lodger&family=New+Rocker&display=swap');
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      margin: 0;
+      background-image: url("https://telegra.ph/file/e1c97c509ab9dc093bcca.jpg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      color: #f0f0f0;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    header {
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 50px
+    }
+
+    h1 {
+      /*font-family: 'Fira Code', sans-serif;*/
+      font-family: 'New Rocker',cursive;
+      font-size: 3.2em;
+      color: #047601;
+      margin: 0;
+      text-shadow: 
+                2px 2px 0 #000, 
+                -2px -2px 0 #000, 
+                -2px 2px 0 #000, 
+                2px -2px 0 #000,
+                2px 0 0 #000, 
+                -2px 0 0 #000, 
+                0 2px 0 #000, 
+                0 -2px 0 #000;
+    }
+
+    h2 {
+      font-family: 'Fira Code', sans-serif;
+      font-size: 0.8em;
+      color: #d3d0c2;
+      margin: 5px 0 30px;
+      opacity: 0.8;
+    }
+
+    .btn {
+      --primary-color: #a9263e;
+      --secondary-color: #5a806c;
+      width: 180px;
+      padding: 0.6em 1.5em;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      border-radius: 6px;
+      border: 1px solid var(--primary-color);
+      transition: 0.5s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      z-index: 1;
+      font-weight: 500;
+      font-size: 15px;
+      font-family: 'Fira Code', monospace;
+      text-transform: uppercase;
+      color: var(--secondary-color);
+      margin-bottom: 15px;
+      top: -30px;
+      text-align: center;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;    
+    }
+
+    .btn::after, .btn::before {
+      content: '';
+      display: block;
+      height: 100%;
+      width: 100%;
+      transform: skew(90deg) translate(-50%, -50%);
+      position: absolute;
+      inset: 50%;
+      left: 25%;
+      z-index: -1;
+      transition: 0.5s ease-out;
+      background-color: var(--primary-color);
+    }
+
+    .btn::before {
+      top: -50%;
+      left: -25%;
+      transform: skew(90deg) rotate(180deg) translate(-50%, -50%);
+    }
+
+    .btn:hover::before {
+      transform: skew(45deg) rotate(180deg) translate(-50%, -50%);
+    }
+
+    .btn:hover::after {
+      transform: skew(45deg) translate(-50%, -50%);
+    }
+
+    .btn:hover {
+      /*color: var(--secondary-color);*/
+      color: black;
+      font-weight: 600;
+    }
+
+    .btn:active {
+      filter: brightness(0.7);
+      transform: scale(0.98);
+    }
+
+
+.btn:nth-of-type(1) {
+    animation: shrink 2.4s infinite 0s;
+}
+
+.btn:nth-of-type(2) {
+    animation: shrink 2.4s infinite 0.4s;
+}
+
+.btn:nth-of-type(3) {
+    animation: shrink 2.4s infinite 0.8s;
+}
+
+.btn:nth-of-type(4) {
+    animation: shrink 2.4s infinite 1.2s;
+}
+
+.btn:nth-of-type(5) {
+    animation: shrink 2.4s infinite 1.6s;
+}
+
+.btn:nth-of-type(6) {
+    animation: shrink 2.4s infinite 2s;
+}
+
+@keyframes shrink {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      text-align: center;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.8em;
+      color: #f0f0f0;
+    }
+
+.menu-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: transparent; /* Transparent background */
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.3s;
+  color: #a9263e; /* Orange color for the icon */
+  font-size: 24px;
+  padding: 10px;
+}
+
+.menu-btn:hover {
+  transform: scale(1.1);
+  color: #a9263e; /* Slightly darker orange on hover */
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  color: #f0f0f0;
+  transform: translateX(-100%);
+  transition: transform 0.3s;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+}
+
+.sidebar.show {
+  transform: translateX(0);
+}
+
+.sidebar.lock {
+  transform: translateX(0);
+}
+
+.sidebar img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  border: 2px dotted #047601;
+}
+
+.sidebar .profile-name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2em;
+  margin-bottom: 30px;
+  opacity: 0.9;
+  color: #d3d0c2;
+}
+
+.sidebar .bio {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8em;
+  color: #d3d0c2;
+  margin-top: 0px;
+  margin-bottom: 30px;
+  margin-left: 5px;
+  margin-right: 5px;
+  
+}
+
+.sidebar .follow-btn {
+  width: 150px;
+  padding: 0.4em 1em;
+  background-color: #000;
+  border-radius: 6px;
+  border: 1px solid #a9263e;
+  transition: 0.3s;
+  text-transform: uppercase;
+  color: #d3d0c2;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'Fira Code', monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  opacity: 0.8;
+   background: linear-gradient(-45deg, #2f5c4f, #5a806c, #c14a5e, #773849);
+   background-size: 400% 400%;
+   animation: gradient 10s ease infinite;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+@keyframes gradient {
+   0% {
+       background-position: 0% 50%;
+   }
+   50% {
+       background-position: 100% 50%;
+   }
+   100% {
+       background-position: 0% 50%;
+   }
+}
+
+
+.sidebar .follow-btn:hover {
+  color: black;
+}
+
+#love {
+ position: relative;
+ margin-top: 95px;
+text-align: center;
+ font-family: 'Courier New', Courier, monospace;
+ font-size: 0.9em;
+ color: #d3d0c2;
+}
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 id="titre">CRAZY-MD</h1>
+    <h2>Multifunctional WhatsApp Bot <br>(Coming soon)</h2>
+  </header>
+
+  <button class="menu-btn" onclick="toggleSidebar()">&#9776;</button>
+
+<div class="sidebar" id="sidebar">
+  <img src="https://telegra.ph/file/3e6c0250c7ac90c8379ca.jpg" alt="Profile Picture" id="profile-pic">
+  <div class="profile-name"onclick="redirigerVersWhatsApp()">@CrazyPrince</div>
+  <div class="bio">Ce bot est développé par la Team CRAZY-MD avec Ken~v et Crazy_Prince...<br>Thanks to @Crypto_RIV for their voice🙃</div>
+ 
+  <a href="https://app.koyeb.com/auth/signup" class="follow-btn" target="_blank">KHOYEB</a>
+  <a href="https://dashboard.heroku.com/new?template=https://github.com/CrazyPrince/CRAZY-MD" class="follow-btn" target="_blank">HEROKU</a>
+  <a href="https://github.com/kenvofc" class="follow-btn" target="_blank">GITHUB</a>
+  <a href="https://railway.app/login" class="follow-btn" target="_blank">RAIWAY</a>
+  <a href="https://pastebin.com/asbE1Zbr" class="follow-btn" target="_blank">BOTS LIST</a>
+  <a href="wa.me/237620114013" class="follow-btn" target="_blank"> Contact Me</a>
+
+  <a id="love">Made with ❤️</>
+ 
+</div>
+
+  <a href="/pair" class="btn" id="btn1" target="_blank" onclick="window.open('/pair'); return false;">Pair Code</a>
+  <a href="/crazyqr" class="btn" id="btn2" target="_blank" onclick="window.open('/crazyqr'); return false;">Qr code</a>
+  <a href="https://github.com/CrazyPrince/CRAZY-MD/fork" class="btn" id="btn3" target="_blank">FORK</a>
+  <a href="https://dashboard.heroku.com/new?template=https://github.com/CrazyPrince/CRAZY-MD" class="btn" id="btn4" target="_blank">Deploy</a>
+  <a href="/helps" class="btn" id="btn5" target="_blank" onclick="window.open('/helps'); return false;">Helps</a>
+<br>
+<br>
+<audio controls>
+  <source src="kongga.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+  <footer>
+    &copy; 2024 Crazy-MD
+  </footer>
+
+<script>
+  document.getElementById('titre').addEventListener('click', function() {
+    location.reload(); // Refresh the page
+  });
+</script>
+<script>
+  function redirigerVersWhatsApp() {
+    window.location.href = "https://wa.me/+237620114013";
+  }
+</script>
+<script>
+  document.getElementById('profile-pic').addEventListener('click', function() {
+    location.reload(); // Refresh the page
+  });
+</script>
+<script>
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('show');
+  }
+</script>
+</body>
+</html>
