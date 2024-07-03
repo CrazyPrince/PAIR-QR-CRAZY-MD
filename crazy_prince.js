@@ -33,12 +33,12 @@ app.use('/code', code);
 
 // Middleware pour servir pair.html lorsque la route /pair est accédée
 app.get('/pair', (req, res) => {
-    res.sendFile(path.join(__dirname, 'pair', 'pair.html'));
+    res.sendFile(path.join(__dirname, 'publics', 'pair.html'));
 });
 
 // Middleware pour servir helps.html lorsque la route /helps est accédée
 app.get('/helps', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'helps.html'));
+    res.sendFile(path.join(__dirname, 'publics', 'helps.html'));
 });
 
 // Error handling middleware
