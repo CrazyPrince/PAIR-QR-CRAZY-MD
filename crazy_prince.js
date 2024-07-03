@@ -20,7 +20,7 @@ app.use(helmet());
 app.use(morgan('combined'));
 
 // Serve static files from the "public/assets" folder
-app.use(express.static(path.join(__dirname, 'public', 'assets')));
+app.use(express.static(path.join(__dirname, 'public', 'publics')));
 
 // Serve the index.html file for the root route
 app.get('/', (req, res) => {
