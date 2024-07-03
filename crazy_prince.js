@@ -1,18 +1,17 @@
-// SEVER FILE
 const express = require('express');
 const path = require('path');
 const helmet = require('helmet');
 const morgan = require('morgan');
 
 const app = express();
-const port = process.env.PORT || 0; // Default port set to random for security, you can set your own
+const port = process.env.PORT || 3000; // Default port set to 3000, adjust as needed
 
 // Définition du répertoire racine du processus en cours
-__path = process.cwd();
+const __path = process.cwd();
 
 // Import des modules crazyqr et pair
-let server = require('./crazyqr'),
-    code = require('./pair');
+const server = require('./crazyqr');
+const code = require('./pair');
 
 // Middleware for security headers
 app.use(helmet());
@@ -33,15 +32,14 @@ app.use('/crazyqr', server);
 app.use('/code', code);
 
 // Middleware pour servir pair.html lorsque la route /pair est accédée
-app.use('/pair', (req, res, next) => {
-    res.sendFile(__path + './pair/pair.html');
+app.get('/pair', (req, res) => {
+    res.sendFile(path.join(__dirname, 'pair', 'pair.html'));
 });
 
 // Middleware pour servir helps.html lorsque la route /helps est accédée
-app.use('/helps', (req, res, next) => {
-    res.sendFile(__path + './public/helps.html');
+app.get('/helps', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'helps.html'));
 });
-
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -49,15 +47,11 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something went wrong!');
 });
 
-// Start the server
-const server = app.listen(port, () => {
-  const actualPort = server.address().port;
-  const url = `http://localhost:${actualPort}`;
-  console.log(`Server is running at ${url}`);
+// Démarrage du serveur
+const serverInstance = app.listen(port, () => {
+  const actualPort = serverInstance.address().port;
+  console.log(`Server is running at http://localhost:${actualPort}`);
 });
 
 // Export the app for PM2 clustering
 module.exports = app;
-
-
-// JAVASCRIPT IS SWEET, BROTHERS AND SISTERS ❤️
