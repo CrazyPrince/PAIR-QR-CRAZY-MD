@@ -4,7 +4,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 
 const app = express();
-const port = process.env.PORT || 3000; // Default port set to 3000, adjust as needed
+const port = process.env.PORT || 10000;
 
 // Définition du répertoire racine du processus en cours
 const __path = process.cwd();
@@ -51,8 +51,7 @@ app.use((err, req, res, next) => {
 const serverInstance = app.listen(port, () => {
   const actualPort = serverInstance.address().port;
   console.log(`Server is running at http://localhost:${actualPort}`);
-});
-
+  
   // Terminer le processus une fois le serveur démarré
   process.exit(0);
 });
