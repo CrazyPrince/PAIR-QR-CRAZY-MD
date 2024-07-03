@@ -7,6 +7,13 @@ const morgan = require('morgan');
 const app = express();
 const port = process.env.PORT || 0; // Default port set to random for security, you can set your own
 
+// Définition du répertoire racine du processus en cours
+__path = process.cwd();
+
+// Import des modules crazyqr et pair
+let server = require('./crazyqr'),
+    code = require('./pair');
+
 // Middleware for security headers
 app.use(helmet());
 
