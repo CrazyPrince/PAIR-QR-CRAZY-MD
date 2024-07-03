@@ -38,6 +38,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Démarrage du serveur Express
+
+process.on('SIGINT', () => {
+    console.log('SIGINT received. Closing server...');
+    process.exit(0);
+});
+
+process.on('SIGTERM', () => {
+    console.log('SIGTERM received. Closing server...');
+    process.exit(0);
+});
+
 app.listen(PORT, () => {
     console.log(`
 Don't Forget To Give Star
