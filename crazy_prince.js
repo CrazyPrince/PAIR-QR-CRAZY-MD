@@ -36,11 +36,6 @@ app.get('/pair', (req, res) => {
     res.sendFile(path.join(__dirname, 'pair', 'pair.html'));
 });
 
-// Middleware pour servir helps.html lorsque la route /helps est accédée
-app.get('/helps', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'helps.html'));
-});
-
 // Error handling middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
