@@ -10,8 +10,8 @@ const port = process.env.PORT || 10000;
 const __path = process.cwd();
 
 // Import des modules crazyqr et pair
-const server = require('./crazyqr');
-const code = require('./pair');
+const server = require('./crazyqr.js');
+const code = require('./pair.js');
 
 // Middleware for security headers
 app.use(helmet());
