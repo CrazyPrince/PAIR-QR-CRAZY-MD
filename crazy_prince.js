@@ -53,5 +53,9 @@ const serverInstance = app.listen(port, () => {
   console.log(`Server is running at http://localhost:${actualPort}`);
 });
 
+  // Terminer le processus une fois le serveur démarré
+  process.exit(0);
+});
+
 // Export the app for PM2 clustering
 module.exports = app;
