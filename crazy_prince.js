@@ -1,18 +1,25 @@
+// SEVER FILE
 const express = require('express');
+const path = require('path');
+const helmet = require('helmet');
+const morgan = require('morgan');
+
 const app = express();
-const bodyParser = require("body-parser");
-const PORT = process.env.PORT || 8000;
+const port = process.env.PORT || 0; // Default port set to random for security, you can set your own
 
-console.log('✅Server Started...')
-// Définition du répertoire racine du processus en cours
-__path = process.cwd();
+// Middleware for security headers
+app.use(helmet());
 
-// Import des modules crazyqr et pair
-let server = require('./crazyqr'),
-    code = require('./pair');
+// Middleware for logging HTTP requests
+app.use(morgan('combined'));
 
-// Configuration pour éviter les erreurs d'événements liées aux écouteurs d'événements
-require('events').EventEmitter.defaultMaxListeners = 500;
+// Serve static files from the "public/assets" folder
+app.use(express.static(path.join(__dirname, 'public', 'assets')));
+
+// Serve the index.html file for the root route
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'crazy-md.html'));
+});
 
 // Utilisation des middlewares pour les routes spécifiques
 app.use('/crazyqr', server);
@@ -23,37 +30,27 @@ app.use('/pair', (req, res, next) => {
     res.sendFile(__path + './pair/pair.html');
 });
 
-// Middleware pour servir crazy-md.html lorsque la route / est accédée (route par défaut)
-app.use('/', (req, res, next) => {
-    res.sendFile(__path + './public/crazy-md.html');
-});
-
 // Middleware pour servir helps.html lorsque la route /helps est accédée
 app.use('/helps', (req, res, next) => {
     res.sendFile(__path + './public/helps.html');
 });
 
-// Middleware pour parser les données JSON et les données de formulaire
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
-// Démarrage du serveur Express
-
-process.on('SIGINT', () => {
-    console.log('SIGINT received. Closing server...');
-    process.exit(0);
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something went wrong!');
 });
 
-process.on('SIGTERM', () => {
-    console.log('SIGTERM received. Closing server...');
-    process.exit(0);
+// Start the server
+const server = app.listen(port, () => {
+  const actualPort = server.address().port;
+  const url = `http://localhost:${actualPort}`;
+  console.log(`Server is running at ${url}`);
 });
 
-app.listen(PORT, () => {
-    console.log(`
-Don't Forget To Give Star
-@CrazyPrince
-Server running on http://localhost:` + PORT);
-});
-
+// Export the app for PM2 clustering
 module.exports = app;
+
+
+// JAVASCRIPT IS SWEET, BROTHERS AND SISTERS ❤️
