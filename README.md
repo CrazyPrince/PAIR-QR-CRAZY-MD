@@ -12,7 +12,7 @@
     <img src="https://telegra.ph/file/47a6edbc2c38bf98089ae.jpg" width="500">
      
 </a>
- <p align="center"><img src="https://profile-counter.glitch.me/{Itxxwasi}/count.svg" alt="xcelsama:: Visitor's Count" /></p>
+ <p align="center"><img src="https://profile-counter.glitch.me/{PAIR-QR-CRAZY-MD}/count.svg" alt="xcelsama:: Visitor's Count" /></p>
 
 
 
